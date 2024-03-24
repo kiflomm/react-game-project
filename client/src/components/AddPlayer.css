@@ -1,0 +1,52 @@
+.add-player-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  /* align-items: center; */
+}
+.add-player-title{
+  text-align: center;
+}
+.add-player-description{
+  text-align: center;
+}
+.form-container {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  width: 100%;
+}
+
+[class*="button"] {
+  width: 50%;  
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem; 
+  cursor: pointer;
+}
+.add-clear{
+  display: flex;
+  flex-direction: row;
+}
+.add-button {
+  background-color: #1e7421;
+  color: #ffffff; 
+}
+.clear-button {
+  background-color: #7c342f;
+  color: #ffffff; 
+}

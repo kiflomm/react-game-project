@@ -1,0 +1,21 @@
+.random-number-generator {
+    text-align: center;
+  }
+.numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .number {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+  
