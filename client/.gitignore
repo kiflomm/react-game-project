@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+//testing files
+MyComponent.jsx
+MyComponent.css

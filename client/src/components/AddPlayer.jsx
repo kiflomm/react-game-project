@@ -6,7 +6,7 @@ function AddPlayer() {
   return (
     <div className="add-player-container"> 
       <h1 className="add-player-title">Add players Here</h1>
-      <div className="add-player-description">Enter the name of the players with his guesses. </div>
+      <div className="add-player-description">Enter the name of the player with the guesses down in the input fields and hit enter </div>
       <div className="form-container">
         <div className="input-group">
           <label htmlFor="players" className="label">player name</label>
