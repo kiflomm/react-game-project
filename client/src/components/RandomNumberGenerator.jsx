@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import GameResult from './GameResult'
 import './RandomNumberGenerator.css'
+
 const RandomNumberGenerator = ({ players, guesses }) => {
 	const [numbers, setNumbers] = useState([])
 	const [displayedNumbers, setDisplayedNumbers] = useState([])
