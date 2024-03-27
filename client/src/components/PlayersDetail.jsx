@@ -1,11 +1,6 @@
-import { useState } from 'react'
-import RandomNumberGenerator from './RandomNumberGenerator'
-
-const PlayersDetail = ({players,allGuesses}) => {
-    const [result,setResult] = useState()
-    const startGame = ()=>{ 
-            setResult(<RandomNumberGenerator players ={players} guesses= {allGuesses} />) 
-    }
+import { useState } from 'react' 
+const PlayersDetail = ({shared,toggleRNG}) => {
+    const {players,allGuesses} = shared
   return (
     <div className="players-detail">
                     <h1>This is the list of the registered players</h1>
@@ -36,11 +31,7 @@ const PlayersDetail = ({players,allGuesses}) => {
                             }
                         </tbody>
                     </table>
-                    
-                    <button onClick={()=>(console.log(players,allGuesses))}>Start Game</button>
-                    <div >
-                        {result}
-                    </div>
+                    <button onClick={toggleRNG}>start game</button>
                 </div>
   )
 }

@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import GameResult from './GameResult'
 import './RandomNumberGenerator.css'
 
-const RandomNumberGenerator = ({ players, guesses }) => {
-	const [numbers, setNumbers] = useState([])
+const RandomNumberGenerator = ({ shared,setSharedForResult,toggleResult }) => {  
+	const {players,allGuesses} = shared  
 	const [displayedNumbers, setDisplayedNumbers] = useState([])
-	const [clicked, setClicked] = useState("visible") 
-	const [correctGuesses,setCorrectGuesses] = useState([])
-	// Function to generate 20 random and distinct numbers
+	const [clicked, setClicked] = useState("visible")  
+
+	// Function to generate 20 random and distinct numbers	
 	const generateNumbers = () => {
 		let generatedNumbers = []
 		while (generatedNumbers.length < 20) {
@@ -15,8 +14,7 @@ const RandomNumberGenerator = ({ players, guesses }) => {
 			if (!generatedNumbers.includes(randomNumber)) {
 				generatedNumbers.push(randomNumber)
 			}
-		}
-		setNumbers(generatedNumbers)
+		}  
 		displayNumbersSequentially(generatedNumbers)
 		setClicked("none")
 	}
@@ -33,7 +31,7 @@ const RandomNumberGenerator = ({ players, guesses }) => {
 			setDisplayedNumbers([...temp.slice(0, index)])
 			//index++  
 			if (index === temp.length) {
-				getCorrectGuesses(players,guesses,temp)
+				getCorrectGuesses(players,allGuesses,temp)
 				clearInterval(interval)
 			}
 			
@@ -45,14 +43,14 @@ const RandomNumberGenerator = ({ players, guesses }) => {
 		let tempCorrectGuesses = []
 		players.forEach((player, playerIdx) => {
 			let guessCount = 0
-			guesses[playerIdx].forEach((guess, guessIdx) => {
-				if (generated.includes(guess)) {
+			guesses[playerIdx].forEach((guess) => {
+				if (generated.includes(Number(guess))) {
 					guessCount++
 				}
 			})
 			tempCorrectGuesses.push({ player, guessCount })
 		}) 
-		setCorrectGuesses(tempCorrectGuesses)
+		setSharedForResult(tempCorrectGuesses)  
 	}
 
 	return (
@@ -68,9 +66,9 @@ const RandomNumberGenerator = ({ players, guesses }) => {
 						</div>
 					))}
 			</div>
-			<button onClick={generateNumbers} style={{ display: `${clicked}` }}>Generate Numbers</button>
-			{/* <div className='numbers'>{numbers.map((num,id)=> (<div className='number' key={id}>{num}</div>))}</div> */} 
-			<GameResult correctGuesses={correctGuesses}/> 
+			<button onClick={()=>{
+				generateNumbers();toggleResult();
+			}} style={{ display: `${clicked}` }}>Generate Numbers</button> 
 		</div>
 	)
 }

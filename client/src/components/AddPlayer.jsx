@@ -1,7 +1,8 @@
+//This component has no bugs
+
 import { useState } from 'react';
-import './AddPlayer.css';
-import PlayersDetail  from './PlayersDetail';
-const AddPlayer = () => { 
+import './AddPlayer.css'; 
+const AddPlayer = ({setShared}) => { 
 
     //for the final return
     const [players, setPlayers] = useState([])
@@ -14,8 +15,9 @@ const AddPlayer = () => {
         event.preventDefault()
         setPlayers(prev => [...prev, player])
         setAllGuesses(prev => [...prev, guess])
+        setShared({players:[...players, player],allGuesses:[...allGuesses, guess]})
         setPlayer('')
-        setGuesse([])
+        setGuesse([])  
     }
 
     return (
@@ -41,14 +43,10 @@ const AddPlayer = () => {
                         e.preventDefault()
                         setPlayer('')
                         setGuesse([])
-                    }}>clear</button>
+                    }}>clear</button> 
                 </div>
             </form>   
-        </div> 
-        {/* <div onClick={()=>{console.log(players,allGuesses)}}>click me</div> */}
-        <PlayersDetail players={players} allGuesses={allGuesses} />
-        {/* <PlayersDetail players ={ ["kiflom","kapital","biniam"]} 
-                       allGuesses = {[[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15]]}/> */}
+        </div>  
         </>
     );
 }
