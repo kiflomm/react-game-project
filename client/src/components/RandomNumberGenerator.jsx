@@ -1,5 +1,6 @@
 import { useReducer, useState } from 'react'
 import '../styles/RandomNumberGenerator.css'
+import PlayersDetail from './PlayersDetail'
 
 const RandomNumberGenerator = ({ shared,setSharedForResult,toggleResult }) => {  
 	const colors = ["black","red","green","blue","purple","darkblue","orange","pink","brown"] 
@@ -52,19 +53,25 @@ const RandomNumberGenerator = ({ shared,setSharedForResult,toggleResult }) => {
 	const getCorrectGuesses = (players, guesses, generated) => {
 		let tempCorrectGuesses = []
 		players.forEach((player, playerIdx) => {
-			let guessCount = 0
+			let guessCount = 0 
 			guesses[playerIdx].forEach((guess) => {
 				if (generated.includes(Number(guess))) {
 					guessCount++
 				}
 			})
-			tempCorrectGuesses.push({ player, guessCount })
-		}) 
-		setSharedForResult(tempCorrectGuesses)  
+			tempCorrectGuesses.push({ player, guessCount }) 
+		})   
+		let winner = tempCorrectGuesses[0]
+		tempCorrectGuesses.forEach((detail,index)=>{
+			if(winner.guessCount < detail.guessCount){
+				winner = detail
+			}
+		})
+		setSharedForResult({tempCorrectGuesses,winner})  
 	}  
 	return (
 		<div className="random-number-generator">
-			<div className="spiner"style={mystyle}>
+			<div className="spiner" style={mystyle}>
 				<p >{spiner}</p> 
 			</div>
 		<div className="counter">

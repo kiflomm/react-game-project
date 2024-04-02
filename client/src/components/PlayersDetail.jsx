@@ -36,6 +36,7 @@ const handleChange = (event, rowIndex, columnIndex) => {
                               handleChange(event, rowIndex, columnIndex)
                             }
                             value={guess}
+                            name='guess_displayed'
                           />
                         </td>
                       ))}

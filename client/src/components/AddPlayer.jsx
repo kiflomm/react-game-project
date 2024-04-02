@@ -40,9 +40,9 @@ const AddPlayer = ({setShared}) => {
         <div className="add-player-container">
             <h1 className="add-player-title">Add players Here</h1>
             <div className="add-player-description">Enter the name of the player with the guesses down in the input fields and hit enter </div>
-            <form className="form-container">
+            <form className="form-container" name='add-player'>
                 <div className="input-group">
-                    <label htmlFor="players" className="label">player name</label>
+                    <label htmlFor="player" className="label">player name</label>
                     <input id="player" className="input" placeholder="Enter name" value={player} onChange={(e) => { 
                       setPlayer(e.target.value) 
                       setAlert1('')
@@ -50,7 +50,7 @@ const AddPlayer = ({setShared}) => {
                     <div className='alert'>{alert1}</div>
                 </div>
                 <div className="input-group">
-                    <label htmlFor="numbers" className="label">choose numbers</label>
+                    <label htmlFor="guess" className="label">choose numbers</label>
                     <input id='guess' className= "input"  
                       onChange={(e) => {
                         let value = e.target.value.split(" ")
