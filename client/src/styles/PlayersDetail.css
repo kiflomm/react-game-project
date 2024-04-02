@@ -1,0 +1,45 @@
+.players-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+.players-table th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+.players-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .guesses-table {
+    border-collapse: collapse;
+  }
+  
+  .guesses-table td {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .number-input{ 
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+  }
+  
+  .delete-button { 
+    width: auto !important;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }

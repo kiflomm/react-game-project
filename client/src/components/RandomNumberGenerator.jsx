@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import './RandomNumberGenerator.css'
+import { useReducer, useState } from 'react'
+import '../styles/RandomNumberGenerator.css'
 
 const RandomNumberGenerator = ({ shared,setSharedForResult,toggleResult }) => {  
+	const colors = ["black","red","green","blue","purple","darkblue","orange","pink","brown"] 
 	const {players,allGuesses} = shared  
 	const [displayedNumbers, setDisplayedNumbers] = useState([])
 	const [clicked, setClicked] = useState("visible")  
-
+	const [spiner,setSpiner] = useState()
+	const [mystyle,setMystyle] = useState()
+	const [counter,setCounter] = useState() 
 	// Function to generate 20 random and distinct numbers	
-	const generateNumbers = () => {
+	const generateNumbers = () => { 
 		let generatedNumbers = []
 		while (generatedNumbers.length < 20) {
-			const randomNumber = Math.floor(Math.random() * 100) + 1
+			const randomNumber = Math.floor(Math.random() * 90) + 1
 			if (!generatedNumbers.includes(randomNumber)) {
 				generatedNumbers.push(randomNumber)
 			}
@@ -21,22 +24,29 @@ const RandomNumberGenerator = ({ shared,setSharedForResult,toggleResult }) => {
 
 	// Function to display numbers one by one with delay
 	const displayNumbersSequentially = (temp) => {
-
+		let timeout = 2000
 		let index = 1
 		setDisplayedNumbers([temp[0]])
-		const interval = setInterval(() => {
-
-			/* why is there no change whether I put the line index++ before or after the setDisplayNumbers() */
+		setSpiner(temp[0])
+		setCounter(`${1}/20`)
+		setMystyle({backgroundColor:`${colors[Math.floor(Math.random()*colors.length)]}`})
+		const interval = setInterval(() => { 
+			setSpiner(temp[index]) 
 			index++ 
+			setCounter(`${index}/20`)
+			setMystyle({backgroundColor:`${colors[Math.floor(Math.random()*colors.length)]}`})
 			setDisplayedNumbers([...temp.slice(0, index)])
 			//index++  
 			if (index === temp.length) {
 				getCorrectGuesses(players,allGuesses,temp)
-				clearInterval(interval)
-			}
-			
-		}, 500) 
-		
+				clearInterval(interval) 
+			} 
+		}, timeout)  
+		const spinerInterval = setTimeout(()=>{
+			// setSpiner("")
+			setCounter(<span>spining completed</span>)
+			setMystyle({display:`none`})
+		},timeout*20)
 	}
 
 	const getCorrectGuesses = (players, guesses, generated) => {
@@ -51,13 +61,15 @@ const RandomNumberGenerator = ({ shared,setSharedForResult,toggleResult }) => {
 			tempCorrectGuesses.push({ player, guessCount })
 		}) 
 		setSharedForResult(tempCorrectGuesses)  
-	}
-
+	}  
 	return (
 		<div className="random-number-generator">
-			<div className="spinnerr">
-
+			<div className="spiner"style={mystyle}>
+				<p >{spiner}</p> 
 			</div>
+		<div className="counter">
+			<p>{counter}</p>
+		</div>
 			<div className="numbers">
 				{
 					displayedNumbers.map((number, index) => (
@@ -67,7 +79,8 @@ const RandomNumberGenerator = ({ shared,setSharedForResult,toggleResult }) => {
 					))}
 			</div>
 			<button onClick={()=>{
-				generateNumbers();toggleResult();
+				generateNumbers()
+				toggleResult()
 			}} style={{ display: `${clicked}` }}>Generate Numbers</button> 
 		</div>
 	)
