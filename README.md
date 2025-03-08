@@ -1,5 +1,22 @@
-<h2 align="center">This is me kiflom the brogrammer.</h2>
-<i> I love programming and I am doing this project to learn the basics of React</i>
-<h4 align="center">This game is a random number generator where each of the players guess 5 numbers in the range [1,90] <br/>
-  and the one who guesses more exact numbers out of the randomly generated 20 numbers becomes the winner 
-</h4>
+<h1 align="center">Number Guessing Game</h1>
+
+<p align="center">A React-based multiplayer number guessing game built during my journey learning React and Tailwind CSS for the first time.</p>
+
+<h3 align="center">Game Rules</h3>
+<p align="center">
+  • Players take turns guessing 5 numbers between 1-90<br/>
+  • The game generates 20 random numbers<br/> 
+  • The player who matches the most numbers wins!
+</p>
+
+<h3 align="center">Technical Details</h3>
+<p align="center">
+  Built with React and Tailwind CSS featuring:<br/>
+  • Component-based architecture<br/>
+  • React Hooks for state management<br/>
+  • Conditional rendering<br/>
+  • Props and state sharing between components<br/>
+  • Responsive design using Tailwind CSS
+</p>
+
+<p align="center"><i>This project represents my first hands-on experience with React and Tailwind CSS, serving as a practical learning exercise to understand modern web development concepts.</i></p>
